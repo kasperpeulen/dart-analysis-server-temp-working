@@ -313,6 +313,11 @@ class DartCompletionCache extends CompletionCache {
       if (element.isOperator) {
         return;
       }
+      if (element is FunctionElement) {
+        if (element.enclosingElement is! CompilationUnitElement) {
+          return;
+        }
+      }
     }
 
     CompletionSuggestion suggestion =
